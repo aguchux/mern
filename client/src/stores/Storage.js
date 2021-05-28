@@ -1,12 +1,9 @@
 import { createContext } from 'react'
 import { useStorageReducer } from 'react-storage-hooks'
 
-const dataset = {
-    name: "chux"
-}
+const dataset = {}
 const storage = new createContext(dataset)
 const { Provider } = storage
-
 
 const StorageProvider = ({ children }) => {
     const [state, dispatch, wrirteError] = useStorageReducer(localStorage, "dataset", (state, action) => {

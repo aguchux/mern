@@ -3,11 +3,14 @@ import path from 'path'
 import apiRoutes from './routes/apiRoutes.js'
 import redis from 'redis'
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+dotenv.config()
+
+
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json({ extended: true }))
 
@@ -30,10 +33,10 @@ app.post('*', (req, res) => {
 
 const redisConfig = {
     port: process.env.REDIS_PORT || '14163',
-    host: process.env.REDIS_URL || 'redis-14163.c1.us-west-2-2.ec2.cloud.redislabs.com',
-    password: process.env.REDIS_PASSWORD || 'VK6oh9jLogkAcfPoYjAWE0o8kJq4i77g'
+    host: process.env.REDIS_URL || 'localhost',
+    password: process.env.REDIS_PASSWORD || 'password'
 }
-const mongoURI = process.env.MONGO_URL || 'mongodb+srv://udozo:hWCgQYZJMDnVQcaC@golojancluster.yvmyx.mongodb.net/merndb?retryWrites=true&w=majority'
+const mongoURI = process.env.MONGO_URL || 'mongodb'
 
 redis.createClient(redisConfig)
     .on('error', (error) => {
